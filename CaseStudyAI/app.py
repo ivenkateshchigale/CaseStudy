@@ -20,7 +20,7 @@ print("Spark Version:", spark.version)
 
 # Load Dataset
 df = spark.read.csv(
-    "/content/machine_data.csv",
+    "machine_data.csv",
     header=True,
     inferSchema=True
 )

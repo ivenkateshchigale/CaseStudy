@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: casestudy-deployment
+
+spec:
+  replicas: 1
+
+  selector:
+    matchLabels:
+      app: casestudy
+
+  template:
+    metadata:
+      labels:
+        app: casestudy
+
+    spec:
+      containers:
+      - name: casestudy
+        image: casestudy:latest
+        imagePullPolicy: Never
