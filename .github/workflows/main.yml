@@ -33,3 +33,7 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build -t casestudy .
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
