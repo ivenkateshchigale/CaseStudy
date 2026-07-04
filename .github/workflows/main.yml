@@ -6,15 +6,17 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  build-and-deploy:
+
+    runs-on: self-hosted
 
     defaults:
       run:
         working-directory: CaseStudyAI
 
     steps:
-      - name: Checkout repository
+
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -33,7 +35,14 @@ jobs:
       - name: Build Docker Image
         run: |
           docker build -t casestudy .
+
       - name: Deploy to Kubernetes
         run: |
           kubectl apply -f deployment.yaml
           kubectl apply -f service.yaml
+
+      - name: Verify Deployment
+        run: |
+          kubectl get pods
+          kubectl get deployments
+          kubectl get services
